@@ -65,10 +65,15 @@ infixr  9 ?.
 class ToBool bool where
   toBool :: bool -> Bool
 
-instance ToBool Bool where toBool = id
-instance ToBool Any  where toBool = getAny
-instance ToBool All  where toBool = getAll
+instance ToBool Bool        where toBool = id
+instance ToBool Any         where toBool = getAny
+instance ToBool All         where toBool = getAll
 instance ToBool (Dual Bool) where toBool = getDual
+instance ToBool Word        where toBool = (/= 0)
+instance ToBool Int         where toBool = (/= 0)
+instance ToBool Integer     where toBool = (/= 0)
+instance ToBool Double      where toBool = (/= 0)
+instance ToBool Float       where toBool = (/= 0)
 
 -- |A simple conditional operator
 if' :: ToBool bool => bool -> a -> a -> a
